@@ -1,1 +1,37 @@
 #!/usr/bin/env ruby
+
+# Methods
+
+def get_user(email)
+	User.find_by(email: email)
+end
+
+def get_email
+	get_email_prompt
+	email = gets.chomp
+	
+	until User.exists?(email: email)
+		get_email_error
+		email = gets.chomp 
+	end
+
+	email
+end
+
+def get_email_prompt
+	puts  "Please enter your email:"
+	print "> "
+end
+
+def get_email_error
+	puts
+	puts  "[Error] That email is not in the database."
+	puts  "Please enter a valid email:"
+	print "> "
+end
+
+# Script
+
+system 'clear'
+
+user = get_user(get_email)
