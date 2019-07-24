@@ -10,7 +10,7 @@ def get_email
 	get_email_prompt
 	email = gets.chomp
 	
-	until User.exists?(email: email)
+	until valid_email?(email)
 		get_email_error
 		email = gets.chomp 
 	end
@@ -28,6 +28,10 @@ def get_email_error
 	puts  "[Error] That email is not in the database."
 	puts  "Please enter a valid email:"
 	print "> "
+end
+
+def valid_email?(email)
+	User.exists?(email: email)
 end
 
 # Script
