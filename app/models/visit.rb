@@ -6,4 +6,9 @@ class Visit < ApplicationRecord
 		ops_hash = { user_id: user.id, short_url_id: shortened_url.id }
 		Visit.create!(ops_hash)
 	end
+
+	has_one :visitor,
+		primary_key: :user_id,
+		foreign_key: :id,
+		class_name:  :User
 end

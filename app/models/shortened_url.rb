@@ -24,4 +24,8 @@ class ShortenedUrl < ApplicationRecord
 		primary_key: :id,
 		foreign_key: :short_url_id,
 		class_name:  :Visit
+
+	has_many :visitors,
+		through: :visits,
+		source:  :visitor
 end
