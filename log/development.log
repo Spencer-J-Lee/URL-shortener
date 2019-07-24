@@ -248,3 +248,6 @@ Migrating to AddIndexToShortenedUrlTable (20190724043017)
   [1m[36mShortenedUrl Create (0.9ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "short_url", "user_id") VALUES ($1, $2, $3) RETURNING "id"[0m  [["long_url", "test"], ["short_url", "A-M7Nz9mBpSNwqONrA8_TA"], ["user_id", 1]]
   [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mShortenedUrl Load (0.8ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls"[0m
+  [1m[36mShortenedUrl Load (0.8ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" ORDER BY "shortened_urls"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mShortenedUrl Load (0.6ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" ORDER BY "shortened_urls"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]

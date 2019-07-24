@@ -14,4 +14,9 @@ class ShortenedUrl < ApplicationRecord
 		ops_hash  = { long_url: user.email, short_url: short_url, user_id: user.id }
 		ShortenedUrl.create!(ops_hash)
 	end
+
+	has_one :submitter,
+		primary_key: :user_id,
+		foreign_key: :id,
+		class_name:  :User
 end
