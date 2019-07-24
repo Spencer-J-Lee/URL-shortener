@@ -22,6 +22,22 @@ def valid_email?(email)
 	User.exists?(email: email)
 end
 
+def get_action
+	get_action_prompt
+	action = gets.to_i
+
+	until valid_action?(action)
+		get_action_error
+		action = gets.to_i
+	end
+
+	action
+end
+
+def valid_action?(action)
+	[1, 2].include?(action)
+end
+
 def get_email_prompt
 	puts  "Please enter your email:"
 	print "> "
@@ -34,8 +50,24 @@ def get_email_error
 	print "> "
 end
 
+def get_action_prompt
+	puts  "Please choose an option:"
+	puts  "1 | Visit URL"
+	puts  "2 | Create URL"
+	print "> "
+end
+
+def get_action_error
+	puts
+	puts  "[Error] That is not a valid action."
+	puts  "Please enter 1 or 2:"
+	print "> "
+end
+
 # Script
 
 system 'clear'
 
 user = get_user(get_email)
+
+action = get_action
