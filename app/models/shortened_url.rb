@@ -19,6 +19,10 @@ class ShortenedUrl < ApplicationRecord
 		visits.count
 	end
 
+	def num_uniques
+		visitors.uniq.count
+	end
+
 	has_one :submitter,
 		primary_key: :user_id,
 		foreign_key: :id,
