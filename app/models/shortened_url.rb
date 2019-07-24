@@ -8,4 +8,10 @@ class ShortenedUrl < ApplicationRecord
 		code = SecureRandom.urlsafe_base64 while ShortenedUrl.exists?(short_url: code)
 		code
 	end
+
+	def self.create_from_user(user)
+		short_url = ShortenedUrl.random_code
+		ops_hash  = { long_url: user.email, short_url: short_url, user_id: user.id }
+		ShortenedUrl.create!(ops_hash)
+	end
 end
