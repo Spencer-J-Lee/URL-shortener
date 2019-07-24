@@ -34,6 +34,7 @@ class ShortenedUrl < ApplicationRecord
 		class_name:  :Visit
 
 	has_many :visitors,
+		-> { distinct },
 		through: :visits,
 		source:  :visitor
 end
