@@ -11,4 +11,9 @@ class Visit < ApplicationRecord
 		primary_key: :user_id,
 		foreign_key: :id,
 		class_name:  :User
+
+	has_one :short_url,
+		primary_key: :short_url_id,
+		foreign_key: :id,
+		class_name:  :ShortenedUrl
 end
