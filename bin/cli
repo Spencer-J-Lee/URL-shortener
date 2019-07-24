@@ -18,6 +18,10 @@ def get_email
 	email
 end
 
+def valid_email?(email)
+	User.exists?(email: email)
+end
+
 def get_email_prompt
 	puts  "Please enter your email:"
 	print "> "
@@ -28,10 +32,6 @@ def get_email_error
 	puts  "[Error] That email is not in the database."
 	puts  "Please enter a valid email:"
 	print "> "
-end
-
-def valid_email?(email)
-	User.exists?(email: email)
 end
 
 # Script
