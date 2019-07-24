@@ -15,6 +15,10 @@ class ShortenedUrl < ApplicationRecord
 		ShortenedUrl.create!(ops_hash)
 	end
 
+	def num_clicks
+		visits.count
+	end
+
 	has_one :submitter,
 		primary_key: :user_id,
 		foreign_key: :id,
