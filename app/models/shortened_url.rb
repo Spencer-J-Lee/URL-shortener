@@ -20,7 +20,7 @@ class ShortenedUrl < ApplicationRecord
 	end
 
 	def num_uniques
-		visitors.uniq.count
+		visits.select('user_id').distinct.count
 	end
 
 	has_one :submitter,
