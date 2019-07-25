@@ -22,6 +22,18 @@ def valid_email?(email)
 	User.exists?(email: email)
 end
 
+def visit_or_create(user)
+	get_action == 1 ? visit_url(user) : create_url(user)
+end
+
+def visit_url(user)
+	Visit.record_visit!(user, get_shortened_url)
+end
+
+def create_url(user)
+	ShortenedUrl.create_from_user(user)
+end
+
 def get_action
 	get_action_prompt
 	action = gets.to_i
@@ -36,6 +48,22 @@ end
 
 def valid_action?(action)
 	[1, 2].include?(action)
+end
+
+def get_shortened_url
+	get_shortened_url_prompt
+	short_url = gets.chomp
+
+	until valid_url?(short_url)
+		get_shortened_url_error
+		short_url = gets.chomp
+	end
+
+	ShortenedUrl.find_by(short_url: short_url)
+end
+
+def valid_url?(url)
+	ShortenedUrl.exists?(short_url: url)
 end
 
 def get_email_prompt
@@ -64,10 +92,20 @@ def get_action_error
 	print "> "
 end
 
+def get_shortened_url_prompt
+	puts  "What URL would you like to visit?"
+	print "> "
+end
+
+def get_shortened_url_error
+	puts
+	puts  "[Error] That is not a valid URL."
+	puts  "Please enter a valid URL:"
+	print "> "
+end
+
 # Script
 
 system 'clear'
 
-user = get_user(get_email)
-
-action = get_action
+visit_or_create(get_user(get_email))
