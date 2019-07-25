@@ -28,7 +28,9 @@ end
 
 def visit_url(user)
 	short_url = get_short_url
+	
 	Visit.record_visit!(user, short_url)
+	
 	display_launch(short_url)
 	Launchy.open(short_url.long_url)
 end
