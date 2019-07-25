@@ -14,7 +14,7 @@ user2 = User.create(email: 'another_test_email')
 puts "Creating shortened urls"
 ShortenedUrl.destroy_all
 url1 = ShortenedUrl.create_from_user(user1)
-url2 = ShortenedUrl.create_from_user(user1)
+url2 = ShortenedUrl.create_from_user(user2)
 
 puts "Creating visits"
 Visit.destroy_all
