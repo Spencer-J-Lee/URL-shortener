@@ -6,18 +6,36 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'database_cleaner'
+DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.clean
+
 puts "Creating users"
 User.destroy_all
 user1 = User.create(email: 'test_email')
-user2 = User.create(email: 'another_test_email')
 
 puts "Creating shortened urls"
 ShortenedUrl.destroy_all
-url1 = ShortenedUrl.create_from_user_and_url(user1, 'www.youtube.com')
-url2 = ShortenedUrl.create_from_user_and_url(user2, 'www.hackerman.org')
+url1 = ShortenedUrl.create_from_user_and_url(user1, 'test_short_url_1')
+url2 = ShortenedUrl.create_from_user_and_url(user1, 'test_short_url_2')
+url3 = ShortenedUrl.create_from_user_and_url(user1, 'test_short_url_3')
 
 puts "Creating visits"
 Visit.destroy_all
 visit1 = Visit.record_visit!(user1, url1)
 visit2 = Visit.record_visit!(user1, url2)
-visit3 = Visit.record_visit!(user2, url1)
+visit3 = Visit.record_visit!(user1, url2)
+visit4 = Visit.record_visit!(user1, url3)
+visit5 = Visit.record_visit!(user1, url3)
+visit6 = Visit.record_visit!(user1, url3)
+
+puts "Creating tag topics"
+TagTopic.destroy_all
+topic = TagTopic.create!(topic: 'test_topic')
+
+puts "Creating taggings"
+Tagging.destroy_all
+tag1 = Tagging.create!(tag_topic_id: 1, short_url_id: 1)
+tag2 = Tagging.create!(tag_topic_id: 1, short_url_id: 2)
+tag3 = Tagging.create!(tag_topic_id: 1, short_url_id: 3)
+
