@@ -13,8 +13,8 @@ user2 = User.create(email: 'another_test_email')
 
 puts "Creating shortened urls"
 ShortenedUrl.destroy_all
-url1 = ShortenedUrl.create_from_user(user1)
-url2 = ShortenedUrl.create_from_user(user2)
+url1 = ShortenedUrl.create_from_user_and_url(user1, 'www.youtube.com')
+url2 = ShortenedUrl.create_from_user_and_url(user2, 'www.hackerman.org')
 
 puts "Creating visits"
 Visit.destroy_all
