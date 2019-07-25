@@ -34,7 +34,7 @@ class ShortenedUrl < ApplicationRecord
 		code
 	end
 
-	def self.create_from_user_and_url(user, long_url)
+	def self.create_from_user_and_long_url(user, long_url)
 		short_url = ShortenedUrl.random_code
 		ops_hash  = { long_url: long_url, short_url: short_url, user_id: user.id }
 		ShortenedUrl.create!(ops_hash)

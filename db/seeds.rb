@@ -17,9 +17,9 @@ user2 = User.create(email: 'test_email_premium', premium: true)
 
 puts "Creating shortened urls"
 ShortenedUrl.destroy_all
-url1 = ShortenedUrl.create_from_user_and_url(user1, 'test_short_url_1')
-url2 = ShortenedUrl.create_from_user_and_url(user1, 'test_short_url_2')
-url3 = ShortenedUrl.create_from_user_and_url(user1, 'test_short_url_3')
+url1 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_short_url_1')
+url2 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_short_url_2')
+url3 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_short_url_3')
 
 puts "Creating visits"
 Visit.destroy_all

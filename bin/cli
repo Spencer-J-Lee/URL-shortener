@@ -36,7 +36,7 @@ def visit_url(user)
 end
 
 def create_url(user)
-	new_short_url = ShortenedUrl.create_from_user_and_url(user, get_long_url)
+	new_short_url = ShortenedUrl.create_from_user_and_long_url(user, get_long_url)
 	display_new_url(new_short_url)
 end
 
