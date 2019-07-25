@@ -108,4 +108,7 @@ end
 
 system 'clear'
 
-visit_or_create(get_user(get_email))
+email = get_email
+user  = get_user(email)
+
+visit_or_create(user)
