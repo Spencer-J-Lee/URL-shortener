@@ -1,6 +1,7 @@
 class ShortenedUrl < ApplicationRecord
 	validates :long_url, :short_url, :user_id, presence: true
 	validates :short_url, uniqueness: true
+	validate  :no_spamming
 
 	has_one :submitter,
 		primary_key: :user_id,
@@ -56,6 +57,8 @@ class ShortenedUrl < ApplicationRecord
 	end
 
 	def no_spamming
-
+		if submitter.recently_submitted_urls.count >= 5
+			errors[:user_id] << "cannot submit more than 5 URLs in one hour."
+		end
 	end
 end
