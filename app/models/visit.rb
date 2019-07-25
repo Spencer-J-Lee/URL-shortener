@@ -1,6 +1,5 @@
 class Visit < ApplicationRecord
-	validates :user_id, presence: true
-	validates :short_url_id, presence: true
+	validates :user_id, :short_url_id, presence: true
 
 	has_one :visitor,
 	primary_key: :user_id,

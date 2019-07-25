@@ -1,7 +1,6 @@
 class ShortenedUrl < ApplicationRecord
-	validates :long_url, presence: true
-	validates :short_url, presence: true, uniqueness: true
-	validates :user_id, presence: true
+	validates :long_url, :short_url, :user_id, presence: true
+	validates :short_url, uniqueness: true
 
 	has_one :submitter,
 		primary_key: :user_id,
@@ -54,5 +53,9 @@ class ShortenedUrl < ApplicationRecord
 			.where('created_at > ?', 10.minutes.ago)
 			.distinct
 			.count
+	end
+
+	def no_spamming
+
 	end
 end
