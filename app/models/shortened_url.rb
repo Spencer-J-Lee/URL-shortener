@@ -40,6 +40,13 @@ class ShortenedUrl < ApplicationRecord
 		ShortenedUrl.create!(ops_hash)
 	end
 
+	def self.prune(mins)
+		ShortenedUrl
+			.select('*')
+			.where('created_at > ?', mins.minutes.ago)
+			.destroy_all
+	end
+
 	def num_clicks
 		visits.count
 	end
