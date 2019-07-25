@@ -31,7 +31,8 @@ def visit_url(user)
 end
 
 def create_url(user)
-	ShortenedUrl.create_from_user_and_url(user, get_long_url)
+	new_short_url = ShortenedUrl.create_from_user_and_url(user, get_long_url)
+	puts "\nYour new short URL: #{new_short_url.short_url}"
 end
 
 def get_long_url
@@ -95,6 +96,7 @@ def get_email_error
 end
 
 def get_action_prompt
+	puts
 	puts  "Choose an option:"
 	puts  "1 | Visit URL"
 	puts  "2 | Create URL"
@@ -109,6 +111,7 @@ def get_action_error
 end
 
 def get_shortened_url_prompt
+	puts
 	puts  "Enter your short URL:"
 	print "> "
 end
@@ -121,6 +124,7 @@ def get_shortened_url_error
 end
 
 def get_long_url_prompt
+	puts
 	puts  "Enter your long URL:"
 	print "> "
 end
