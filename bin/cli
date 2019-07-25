@@ -27,7 +27,9 @@ def visit_or_create(user)
 end
 
 def visit_url(user)
-	Visit.record_visit!(user, get_short_url)
+	short_url = get_short_url
+	Visit.record_visit!(user, short_url)
+	visit_url_display_launch(short_url)
 end
 
 def create_url(user)
@@ -96,8 +98,8 @@ end
 
 def get_action_prompt
 	puts  "\nChoose an option:"
-	puts  "1 | Visit URL"
-	puts  "2 | Create URL"
+	puts  "1 Visit URL"
+	puts  "2 Create URL"
 	print "> "
 end
 
@@ -131,6 +133,10 @@ end
 
 def create_url_display_new_url(new_short_url)
 	puts "\nYour new short URL: #{new_short_url.short_url}"
+end
+
+def visit_url_display_launch(short_url)
+	puts "\nLaunching #{short_url.long_url}..."
 end
 
 # Script
