@@ -13,6 +13,7 @@ DatabaseCleaner.clean
 puts "Creating users"
 User.destroy_all
 user1 = User.create(email: 'test_email')
+user2 = User.create(email: 'test_email_premium', premium: true)
 
 puts "Creating shortened urls"
 ShortenedUrl.destroy_all
