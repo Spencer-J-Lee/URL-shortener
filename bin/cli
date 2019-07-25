@@ -31,7 +31,7 @@ def visit_url(user)
 end
 
 def create_url(user)
-	ShortenedUrl.create_from_user(user)
+	ShortenedUrl.create_from_user_and_url(user, get_long_url)
 end
 
 def get_action
