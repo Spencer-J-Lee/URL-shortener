@@ -89,49 +89,42 @@ def get_email_prompt
 end
 
 def get_email_error
-	puts
-	puts  "[Error] Email is not in the database."
+	puts  "\n[Error] Email is not in the database."
 	puts  "Enter a valid email:"
 	print "> "
 end
 
 def get_action_prompt
-	puts
-	puts  "Choose an option:"
+	puts  "\nChoose an option:"
 	puts  "1 | Visit URL"
 	puts  "2 | Create URL"
 	print "> "
 end
 
 def get_action_error
-	puts
-	puts  "[Error] Not a valid action."
+	puts  "\n[Error] Not a valid action."
 	puts  "Enter 1 or 2:"
 	print "> "
 end
 
 def get_short_url_prompt
-	puts
-	puts  "Enter your short URL:"
+	puts  "\nEnter your short URL:"
 	print "> "
 end
 
 def get_short_url_error
-	puts
-	puts  "[Error] URL not in the database."
+	puts  "\n[Error] URL not in the database."
 	puts  "Enter a valid URL:"
 	print "> "
 end
 
 def get_long_url_prompt
-	puts
-	puts  "Enter your long URL:"
+	puts  "\nEnter your long URL:"
 	print "> "
 end
 
 def get_long_url_error
-	puts
-	puts  "[Error] Not a valid URL."
+	puts  "\n[Error] Not a valid URL."
 	puts  "Enter a valid URL:"
 	print "> "
 end
