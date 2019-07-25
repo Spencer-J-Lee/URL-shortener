@@ -1,7 +1,7 @@
 class ShortenedUrl < ApplicationRecord
 	validates :long_url, :short_url, :user_id, presence: true
 	validates :short_url, uniqueness: true
-	validate  :no_spamming
+	validate  :no_spamming, :nonpremium_max
 
 	has_one :submitter,
 		primary_key: :user_id,
@@ -59,6 +59,12 @@ class ShortenedUrl < ApplicationRecord
 	def no_spamming
 		if submitter.recently_submitted_urls.count >= 5
 			errors[:user_id] << "cannot submit more than 5 URLs in one hour."
+		end
+	end
+
+	def nonpremium_max
+		if submitter.premium == false && submitter.submitted_urls.count >= 5
+			errors[:user_id] << "cannot submit more than 5 URLs if non-premium."
 		end
 	end
 end
