@@ -3,6 +3,31 @@ class ShortenedUrl < ApplicationRecord
 	validates :short_url, presence: true, uniqueness: true
 	validates :user_id, presence: true
 
+	has_one :submitter,
+		primary_key: :user_id,
+		foreign_key: :id,
+		class_name:  :User
+
+	has_many :visits,
+		primary_key: :id,
+		foreign_key: :short_url_id,
+		class_name:  :Visit
+
+	has_many :visitors,
+		-> { distinct },
+		through: :visits,
+		source:  :visitor
+
+	has_many :taggings,
+		primary_key: :id,
+		foreign_key: :short_url_id,
+		class_name:  :Tagging
+
+	has_many :tag_topics,
+		-> { distinct },
+		through: :taggings,
+		source:  :topic
+
 	def self.random_code
 		code = SecureRandom.urlsafe_base64
 		code = SecureRandom.urlsafe_base64 while ShortenedUrl.exists?(short_url: code)
@@ -30,29 +55,4 @@ class ShortenedUrl < ApplicationRecord
 			.distinct
 			.count
 	end
-
-	has_one :submitter,
-		primary_key: :user_id,
-		foreign_key: :id,
-		class_name:  :User
-
-	has_many :visits,
-		primary_key: :id,
-		foreign_key: :short_url_id,
-		class_name:  :Visit
-
-	has_many :visitors,
-		-> { distinct },
-		through: :visits,
-		source:  :visitor
-
-	has_many :taggings,
-		primary_key: :id,
-		foreign_key: :short_url_id,
-		class_name:  :Tagging
-
-	has_many :tag_topics,
-		-> { distinct },
-		through: :taggings,
-		source:  :topic
 end
