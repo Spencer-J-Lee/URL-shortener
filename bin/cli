@@ -32,7 +32,7 @@ end
 
 def create_url(user)
 	new_short_url = ShortenedUrl.create_from_user_and_url(user, get_long_url)
-	puts "\nYour new short URL: #{new_short_url.short_url}"
+	create_url_display_new_url(new_short_url)
 end
 
 def get_long_url
@@ -127,6 +127,10 @@ def get_long_url_error
 	puts  "\n[Error] Not a valid URL."
 	puts  "Enter a valid URL:"
 	print "> "
+end
+
+def create_url_display_new_url(new_short_url)
+	puts "\nYour new short URL: #{new_short_url.short_url}"
 end
 
 # Script
