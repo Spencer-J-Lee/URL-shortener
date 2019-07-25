@@ -14,4 +14,11 @@ class User < ApplicationRecord
 	has_many :visited_urls,
 		through: :visits,
 		source:  :short_url
+
+	def recently_submitted_urls
+		submitted_urls
+			.select('*')
+			.where('created_at > ?', 1.hour.ago)
+			.order('created_at DESC')
+	end
 end
