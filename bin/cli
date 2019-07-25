@@ -7,11 +7,11 @@ def get_user(email)
 end
 
 def get_email
-	get_email_prompt
+	email_prompt
 	email = gets.chomp
 	
 	until valid_email?(email)
-		get_email_error
+		email_error
 		email = gets.chomp 
 	end
 
@@ -29,20 +29,20 @@ end
 def visit_url(user)
 	short_url = get_short_url
 	Visit.record_visit!(user, short_url)
-	visit_url_display_launch(short_url)
+	display_launch(short_url)
 end
 
 def create_url(user)
 	new_short_url = ShortenedUrl.create_from_user_and_url(user, get_long_url)
-	create_url_display_new_url(new_short_url)
+	display_new_url(new_short_url)
 end
 
 def get_long_url
-	get_long_url_prompt
+	long_url_prompt
 	long_url = gets.chomp
 
 	until valid_long_url?(long_url)
-		get_long_url_error
+		long_url_error
 		long_url = gets.chomp
 	end
 	
@@ -54,11 +54,11 @@ def valid_long_url?(long_url)
 end
 
 def get_action
-	get_action_prompt
+	action_prompt
 	action = gets.to_i
 
 	until valid_action?(action)
-		get_action_error
+		action_error
 		action = gets.to_i
 	end
 
@@ -70,11 +70,11 @@ def valid_action?(action)
 end
 
 def get_short_url
-	get_short_url_prompt
+	short_url_prompt
 	short_url = gets.chomp
 
 	until valid_url?(short_url)
-		get_short_url_error
+		short_url_error
 		short_url = gets.chomp
 	end
 
@@ -85,57 +85,57 @@ def valid_url?(url)
 	ShortenedUrl.exists?(short_url: url)
 end
 
-def get_email_prompt
+def email_prompt
 	puts  "Input your email:"
 	print "> "
 end
 
-def get_email_error
+def email_error
 	puts  "\n[Error] Email is not in the database."
 	puts  "Enter a valid email:"
 	print "> "
 end
 
-def get_action_prompt
+def action_prompt
 	puts  "\nChoose an option:"
 	puts  "1 Visit URL"
 	puts  "2 Create URL"
 	print "> "
 end
 
-def get_action_error
+def action_error
 	puts  "\n[Error] Not a valid action."
 	puts  "Enter 1 or 2:"
 	print "> "
 end
 
-def get_short_url_prompt
+def short_url_prompt
 	puts  "\nEnter your short URL:"
 	print "> "
 end
 
-def get_short_url_error
+def short_url_error
 	puts  "\n[Error] URL not in the database."
 	puts  "Enter a valid URL:"
 	print "> "
 end
 
-def get_long_url_prompt
+def long_url_prompt
 	puts  "\nEnter your long URL:"
 	print "> "
 end
 
-def get_long_url_error
+def long_url_error
 	puts  "\n[Error] Not a valid URL."
 	puts  "Enter a valid URL:"
 	print "> "
 end
 
-def create_url_display_new_url(new_short_url)
+def display_new_url(new_short_url)
 	puts "\nYour new short URL: #{new_short_url.short_url}"
 end
 
-def visit_url_display_launch(short_url)
+def display_launch(short_url)
 	puts "\nLaunching #{short_url.long_url}..."
 end
 
