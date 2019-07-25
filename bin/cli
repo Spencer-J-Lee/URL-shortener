@@ -115,6 +115,18 @@ end
 
 def get_shortened_url_error
 	puts
+	puts  "[Error] Cannot find that url in the database."
+	puts  "Please enter a valid URL:"
+	print "> "
+end
+
+def get_long_url_prompt
+	puts  "Type in your long URL:"
+	print "> "
+end
+
+def get_long_url_error
+	puts
 	puts  "[Error] That is not a valid URL."
 	puts  "Please enter a valid URL:"
 	print "> "
