@@ -27,7 +27,7 @@ def visit_or_create(user)
 end
 
 def visit_url(user)
-	Visit.record_visit!(user, get_shortened_url)
+	Visit.record_visit!(user, get_short_url)
 end
 
 def create_url(user)
@@ -67,12 +67,12 @@ def valid_action?(action)
 	[1, 2].include?(action)
 end
 
-def get_shortened_url
-	get_shortened_url_prompt
+def get_short_url
+	get_short_url_prompt
 	short_url = gets.chomp
 
 	until valid_url?(short_url)
-		get_shortened_url_error
+		get_short_url_error
 		short_url = gets.chomp
 	end
 
@@ -110,13 +110,13 @@ def get_action_error
 	print "> "
 end
 
-def get_shortened_url_prompt
+def get_short_url_prompt
 	puts
 	puts  "Enter your short URL:"
 	print "> "
 end
 
-def get_shortened_url_error
+def get_short_url_error
 	puts
 	puts  "[Error] URL not in the database."
 	puts  "Enter a valid URL:"
