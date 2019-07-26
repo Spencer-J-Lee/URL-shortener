@@ -53,27 +53,29 @@ class ShortenedUrl < ApplicationRecord
 	end
 
 	def self.prune(n)
-		ShortenedUrl.unpopular_links(n).destroy_all
-		ShortenedUrl.old_unpopular_links(n).destroy_all
-	end
-
-	def self.non_premium_shortened_urls_and_visits
-		ShortenedUrl
-			.select('shortened_urls.*')
-			.joins(:submitter)
-			.joins('LEFT OUTER JOIN visits ON visits.shortened_url_id = shortened_urls.id')
-			.group('shortened_urls.id')
-	end
-
-	def self.unpopular_links(n)
-		ShortenedUrl.non_premium_shortened_urls_and_visits
-			.having('MAX(visits.created_at) < ? OR COUNT(visits.id) = ?', n.minutes.ago, 0)
-	end
-	
-	def self.old_unpopular_links(n)
-			ShortenedUrl.non_premium_shortened_urls_and_visits
-			.having('shortened_urls.created_at < ?', n.minutes.ago)
-			.having('COUNT(visits.id) = ?', 0)
+    ShortenedUrl
+      .joins(:submitter)
+      .joins('LEFT JOIN visits ON visits.shortened_url_id = shortened_urls.id')
+      .where("(
+				shortened_urls.id IN (
+					SELECT 
+						shortened_urls.id
+					FROM 
+						shortened_urls
+					JOIN 
+						visits
+					ON 
+						visits.shortened_url_id = shortened_urls.id
+					GROUP BY 
+						shortened_urls.id
+					HAVING 
+						MAX(visits.created_at) < \'#{n.minute.ago}\'
+					) 
+				OR (
+        	visits.id IS NULL and shortened_urls.created_at < \'#{n.minutes.ago}\'
+				)
+			) AND users.premium = \'f\'")
+      .destroy_all
 	end
 
 	def num_clicks

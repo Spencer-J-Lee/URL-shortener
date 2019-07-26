@@ -4911,3 +4911,111 @@ Migrating to ChangeColumnName (20190726155605)
   ↳ db/seeds.rb:41
   [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/spencerlee/.rvm/gems/ruby-2.6.2/bin/annotate:23
+  [1m[36mShortenedUrl Load (3.5ms)[0m  [1m[34mSELECT * FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < n.minutes ago OR visits.id IS_NULL) 
+				AND users.premium = false)[0m
+  [1m[36mShortenedUrl Load (1.0ms)[0m  [1m[34mSELECT  * FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < n.minutes ago OR visits.id IS_NULL) 
+				AND users.premium = false) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (2.0ms)[0m  [1m[34mSELECT * FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id GROUP BY shortened_urls.id[0m
+  [1m[36mShortenedUrl Load (1.2ms)[0m  [1m[34mSELECT  * FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id GROUP BY shortened_urls.id LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.1ms)[0m  [1m[34mSELECT * FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id GROUP BY shortened_urls.id[0m
+  [1m[36mShortenedUrl Load (1.2ms)[0m  [1m[34mSELECT  * FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id GROUP BY shortened_urls.id LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.3ms)[0m  [1m[34mSELECT shortened_urls.* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id[0m
+  [1m[36mShortenedUrl Load (2.1ms)[0m  [1m[34mSELECT  shortened_urls.* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.2ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id[0m
+  [1m[36mShortenedUrl Load (1.2ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (2.8ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id[0m
+  [1m[36mShortenedUrl Load (1.3ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_url.id LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (3.2ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id"[0m
+  [1m[36mShortenedUrl Load (3.9ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id[0m
+  [1m[36mShortenedUrl Load (1.5ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id[0m
+  [1m[36mShortenedUrl Load (2.3ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id[0m
+  [1m[36mShortenedUrl Load (4.2ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < n.minutes ago OR visits.id IS_NULL) 
+				AND users.premium = false)[0m
+  [1m[36mShortenedUrl Load (4.2ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < n.minutes ago OR visits.id IS_NULL) 
+				AND users.premium = false) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (0.9ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < '#{n.minutes ago}' OR visits.id IS_NULL) 
+				AND users.premium = false)[0m
+  [1m[36mShortenedUrl Load (0.8ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < '#{n.minutes ago}' OR visits.id IS_NULL) 
+				AND users.premium = false) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.9ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < '2019-07-26 09:13:46.371220' OR visits.id IS_NULL) 
+				AND users.premium = false)[0m
+  [1m[36mShortenedUrl Load (1.2ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < '2019-07-26 09:13:46.371220' OR visits.id IS_NULL) 
+				AND users.premium = false) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (2.0ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < ? OR visits.id IS_NULL))[0m
+  [1m[36mShortenedUrl Load (2.9ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING ((MAX(visits.created_at) < ? OR visits.id IS_NULL)) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (3.0ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:15:04.869560')[0m
+  [1m[36mShortenedUrl Load (2.5ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:16:05.632254' OR visits.id IS_NULL)[0m
+  [1m[36mShortenedUrl Load (3.6ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:16:05.632254' OR visits.id IS_NULL) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.0ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:17:21.406711' OR visits.id IS NULL)[0m
+  [1m[36mShortenedUrl Load (1.2ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:17:21.406711' OR visits.id IS NULL) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.8ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:17:57.125701' OR visits.id IS NULL)[0m
+  [1m[36mShortenedUrl Load (1.4ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:17:57.125701' OR visits.id IS NULL) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (2.6ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:18:24.421778' OR visits.id IS NULL)[0m
+  [1m[36mShortenedUrl Load (1.5ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:18:24.421778' OR visits.id IS NULL) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.3ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '#{n.minute.ago}') OR (
+        visits.id IS NULL and shortened_urls.created_at < '#{n.minutes.ago}')[0m
+  [1m[36mShortenedUrl Load (1.5ms)[0m  [1m[34mSELECT  "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT OUTER JOIN	visits ON visits.shortened_url_id = shortened_urls.id GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '#{n.minute.ago}') OR (
+        visits.id IS NULL and shortened_urls.created_at < '#{n.minutes.ago}') LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (3.3ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '#{n.minute.ago}') OR (
+				visits.id IS NULL and shortened_urls.created_at < '#{n.minutes.ago}')[0m
+  [1m[36mShortenedUrl Load (2.6ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '#{n.minute.ago}') OR (
+				visits.id IS NULL and shortened_urls.created_at < '#{n.minutes.ago}') LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (0.9ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '#{n.minute.ago}') OR (
+				visits.id IS NULL and shortened_urls.created_at < '#{n.minutes.ago}')[0m
+  [1m[36mShortenedUrl Load (0.8ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '#{n.minute.ago}') OR (
+				visits.id IS NULL and shortened_urls.created_at < '#{n.minutes.ago}') LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (4.4ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:21:40 -0700') OR (
+				visits.id IS NULL and shortened_urls.created_at < '2019-07-26 09:21:40 -0700')[0m
+  [1m[36mShortenedUrl Load (2.6ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:21:40 -0700') OR (
+				visits.id IS NULL and shortened_urls.created_at < '2019-07-26 09:21:40 -0700') LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.1ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:21:57 -0700') OR (
+				visits.id IS NULL AND shortened_urls.created_at < '2019-07-26 09:21:57 -0700')[0m
+  [1m[36mShortenedUrl Load (1.1ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:21:57 -0700') OR (
+				visits.id IS NULL AND shortened_urls.created_at < '2019-07-26 09:21:57 -0700') LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.0ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:10 -0700') OR (
+				visits.id IS NULL)[0m
+  [1m[36mShortenedUrl Load (1.0ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:10 -0700') OR (
+				visits.id IS NULL) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (3.3ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:29 -0700'))[0m
+  [1m[36mShortenedUrl Load (2.8ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:29 -0700')) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (3.4ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:32 -0700'))[0m
+  [1m[36mShortenedUrl Load (3.8ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:32 -0700')) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.9ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:49.649686')[0m
+  [1m[36mShortenedUrl Load (2.7ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (HAVING MAX(visits.created_at) < '2019-07-26 09:22:49.649686') LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (3.9ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:23:12 -0700') OR (
+				visits.id IS NULL AND shortened_urls.created_at < '2019-07-26 09:23:12 -0700')[0m
+  [1m[36mShortenedUrl Load (2.1ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:23:12 -0700') OR (
+				visits.id IS NULL AND shortened_urls.created_at < '2019-07-26 09:23:12 -0700') LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.7ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:23:29 -0700') OR (
+				visits.id IS NULL)[0m
+  [1m[36mShortenedUrl Load (1.6ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:23:29 -0700') OR (
+				visits.id IS NULL) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (1.5ms)[0m  [1m[34mSELECT shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:23:32 -0700') OR (
+				visits.id IS NULL)[0m
+  [1m[36mShortenedUrl Load (0.9ms)[0m  [1m[34mSELECT  shortened_urls.id FROM "shortened_urls" INNER JOIN "visits" ON "visits"."shortened_url_id" = "shortened_urls"."id" GROUP BY shortened_urls.id HAVING (MAX(visits.created_at) < '2019-07-26 09:23:32 -0700') OR (
+				visits.id IS NULL) LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mShortenedUrl Load (10.3ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls" INNER JOIN "users" ON "users"."id" = "shortened_urls"."user_id" LEFT JOIN visits ON visits.shortened_url_id = shortened_urls.id WHERE ((shortened_urls.id IN (
+        SELECT shortened_urls.id
+        FROM shortened_urls
+        JOIN visits
+        ON visits.shortened_url_id = shortened_urls.id
+        GROUP BY shortened_urls.id
+        HAVING MAX(visits.created_at) < '2019-07-26 09:23:49 -0700'
+      ) OR (
+        visits.id IS NULL and shortened_urls.created_at < '2019-07-26 09:23:49 -0700'
+      )) AND users.premium = 'f')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mShortenedUrl Destroy (1.0ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 3]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mShortenedUrl Destroy (0.5ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 3]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mShortenedUrl Destroy (1.1ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 3]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mShortenedUrl Destroy (0.7ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 2]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mShortenedUrl Destroy (0.7ms)[0m  [1m[31mDELETE FROM "shortened_urls" WHERE "shortened_urls"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
