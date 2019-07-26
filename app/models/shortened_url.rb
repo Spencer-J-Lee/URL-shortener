@@ -56,9 +56,9 @@ class ShortenedUrl < ApplicationRecord
 	def self.unpopular_links(n)
 		ShortenedUrl.non_premium_shortened_urls_and_visits
 			.having('MAX(visits.created_at) < ? OR COUNT(visits.id) = ?', n.minutes.ago, 0)
-		end
-		
-		def self.old_unpopular_links(n)
+	end
+	
+	def self.old_unpopular_links(n)
 			ShortenedUrl.non_premium_shortened_urls_and_visits
 			.having('shortened_urls.created_at < ?', n.minutes.ago)
 			.having('COUNT(visits.id) = ?', 0)
