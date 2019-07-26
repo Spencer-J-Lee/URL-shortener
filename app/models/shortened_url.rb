@@ -40,11 +40,28 @@ class ShortenedUrl < ApplicationRecord
 		ShortenedUrl.create!(ops_hash)
 	end
 
-	def self.prune(mins)
+	def self.prune(n)
+		ShortenedUrl.unpopular_links(n).destroy_all
+		ShortenedUrl.old_unpopular_links(n).destroy_all
+	end
+
+	def self.non_premium_shortened_urls_and_visits
 		ShortenedUrl
-			.select('*')
-			.where('created_at > ?', mins.minutes.ago)
-			.destroy_all
+			.select('shortened_urls.*')
+			.joins(:submitter)
+			.joins('LEFT OUTER JOIN visits ON visits.short_url_id = shortened_urls.id')
+			.group('shortened_urls.id')
+	end
+
+	def self.unpopular_links(n)
+		ShortenedUrl.non_premium_shortened_urls_and_visits
+			.having('MAX(visits.created_at) < ? OR COUNT(visits.id) = ?', n.minutes.ago, 0)
+		end
+		
+		def self.old_unpopular_links(n)
+			ShortenedUrl.non_premium_shortened_urls_and_visits
+			.having('shortened_urls.created_at < ?', n.minutes.ago)
+			.having('COUNT(visits.id) = ?', 0)
 	end
 
 	def num_clicks
