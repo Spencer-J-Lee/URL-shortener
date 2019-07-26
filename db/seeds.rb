@@ -12,14 +12,14 @@ DatabaseCleaner.clean
 
 puts "Creating users"
 User.destroy_all
-user1 = User.create(email: 'test_email')
-user2 = User.create(email: 'test_email_premium', premium: true)
+user1 = User.create(email: 'test_email_premium', premium: true)
+user2 = User.create(email: 'test_email')
 
 puts "Creating shortened urls"
 ShortenedUrl.destroy_all
 url1 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_short_url_1')
-url2 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_short_url_2')
-url3 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_short_url_3')
+url2 = ShortenedUrl.create_from_user_and_long_url(user2, 'test_short_url_2')
+url3 = ShortenedUrl.create_from_user_and_long_url(user2, 'test_short_url_3')
 
 puts "Creating visits"
 Visit.destroy_all
