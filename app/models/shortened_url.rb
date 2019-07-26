@@ -1,6 +1,6 @@
 class ShortenedUrl < ApplicationRecord
-	validates :long_url, :short_url, :user_id, presence: true
-	validates :short_url, uniqueness: true
+	validates :long_url, :shortened_url, :user_id, presence: true
+	validates :shortened_url, uniqueness: true
 	validate  :no_spamming, :nonpremium_max
 
 	has_one :submitter,
@@ -10,7 +10,7 @@ class ShortenedUrl < ApplicationRecord
 
 	has_many :visits,
 		primary_key: :id,
-		foreign_key: :short_url_id,
+		foreign_key: :shortened_url_id,
 		class_name:  :Visit
 
 	has_many :visitors,
@@ -20,7 +20,7 @@ class ShortenedUrl < ApplicationRecord
 
 	has_many :taggings,
 		primary_key: :id,
-		foreign_key: :short_url_id,
+		foreign_key: :shortened_url_id,
 		class_name:  :Tagging
 
 	has_many :tag_topics,
@@ -30,13 +30,13 @@ class ShortenedUrl < ApplicationRecord
 
 	def self.random_code
 		code = SecureRandom.urlsafe_base64
-		code = SecureRandom.urlsafe_base64 while ShortenedUrl.exists?(short_url: code)
+		code = SecureRandom.urlsafe_base64 while ShortenedUrl.exists?(shortened_url: code)
 		code
 	end
 
 	def self.create_from_user_and_long_url(user, long_url)
-		short_url = ShortenedUrl.random_code
-		ops_hash  = { long_url: long_url, short_url: short_url, user_id: user.id }
+		shortened_url = ShortenedUrl.random_code
+		ops_hash      = { long_url: long_url, shortened_url: shortened_url, user_id: user.id }
 		ShortenedUrl.create!(ops_hash)
 	end
 
@@ -49,7 +49,7 @@ class ShortenedUrl < ApplicationRecord
 		ShortenedUrl
 			.select('shortened_urls.*')
 			.joins(:submitter)
-			.joins('LEFT OUTER JOIN visits ON visits.short_url_id = shortened_urls.id')
+			.joins('LEFT OUTER JOIN visits ON visits.shortened_url_id = shortened_urls.id')
 			.group('shortened_urls.id')
 	end
 

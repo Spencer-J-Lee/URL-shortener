@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
 	has_many :visited_urls,
 		through: :visits,
-		source:  :short_url
+		source:  :shortened_url
 
 	def recently_submitted_urls
 		submitted_urls

@@ -1,8 +1,8 @@
 class Tagging < ApplicationRecord
-	validates :tag_topic_id, :short_url_id, presence: true
+	validates :tag_topic_id, :shortened_url_id, presence: true
 
-	has_one :short_url,
-		primary_key: :short_url_id,
+	has_one :shortened_url,
+		primary_key: :shortened_url_id,
 		foreign_key: :id,
 		class_name:  :ShortenedUrl
 

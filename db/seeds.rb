@@ -17,9 +17,9 @@ user2 = User.create(email: 'test_email')
 
 puts "Creating shortened urls"
 ShortenedUrl.destroy_all
-url1 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_short_url_1')
-url2 = ShortenedUrl.create_from_user_and_long_url(user2, 'test_short_url_2')
-url3 = ShortenedUrl.create_from_user_and_long_url(user2, 'test_short_url_3')
+url1 = ShortenedUrl.create_from_user_and_long_url(user1, 'test_shortened_url_1')
+url2 = ShortenedUrl.create_from_user_and_long_url(user2, 'test_shortened_url_2')
+url3 = ShortenedUrl.create_from_user_and_long_url(user2, 'test_shortened_url_3')
 
 puts "Creating visits"
 Visit.destroy_all
@@ -36,7 +36,7 @@ topic = TagTopic.create!(topic: 'test_topic')
 
 puts "Creating taggings"
 Tagging.destroy_all
-tag1 = Tagging.create!(tag_topic_id: 1, short_url_id: 1)
-tag2 = Tagging.create!(tag_topic_id: 1, short_url_id: 2)
-tag3 = Tagging.create!(tag_topic_id: 1, short_url_id: 3)
+tag1 = Tagging.create!(tag_topic_id: 1, shortened_url_id: 1)
+tag2 = Tagging.create!(tag_topic_id: 1, shortened_url_id: 2)
+tag3 = Tagging.create!(tag_topic_id: 1, shortened_url_id: 3)
 
