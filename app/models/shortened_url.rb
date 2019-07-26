@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: shortened_urls
+#
+#  id            :bigint           not null, primary key
+#  long_url      :string           not null
+#  shortened_url :string           not null
+#  user_id       :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class ShortenedUrl < ApplicationRecord
 	validates :long_url, :shortened_url, :user_id, presence: true
 	validates :shortened_url, uniqueness: true

@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: tag_topics
+#
+#  id    :bigint           not null, primary key
+#  topic :string           not null
+#
+
 class TagTopic < ApplicationRecord
 	validates :topic, presence: true, uniqueness: true
 

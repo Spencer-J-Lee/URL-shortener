@@ -4749,3 +4749,165 @@ Migrating to ChangeColumnName (20190726155605)
   ↳ bin/rails:9
   [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL;ALTER TABLE "tag_topics" DISABLE TRIGGER ALL;ALTER TABLE "taggings" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "shortened_urls" DISABLE TRIGGER ALL;ALTER TABLE "visits" DISABLE TRIGGER ALL[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (3.7ms)[0m  [1m[34m          SELECT schemaname || '.' || tablename
+          FROM pg_tables
+          WHERE
+            tablename !~ '_prt_' AND
+             tablename <> 'schema_migrations'  AND tablename <> 'ar_internal_metadata'  AND
+            schemaname = ANY (current_schemas(false))
+[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (2.8ms)[0m  [1m[34mselect table_name from information_schema.views where table_schema = 'URLShortener_development'[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (87.7ms)[0m  [1m[35mTRUNCATE TABLE "public"."tag_topics", "public"."taggings", "public"."users", "public"."shortened_urls", "public"."visits" RESTART IDENTITY CASCADE;[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL;ALTER TABLE "tag_topics" ENABLE TRIGGER ALL;ALTER TABLE "taggings" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "shortened_urls" ENABLE TRIGGER ALL;ALTER TABLE "visits" ENABLE TRIGGER ALL[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ db/seeds.rb:14
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:15
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test_email_premium"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "premium") VALUES ($1, $2) RETURNING "id"[0m  [["email", "test_email_premium"], ["premium", true]]
+  ↳ db/seeds.rb:15
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:16
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test_email"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:16
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email") VALUES ($1) RETURNING "id"[0m  [["email", "test_email"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:16
+  [1m[36mShortenedUrl Load (1.1ms)[0m  [1m[34mSELECT "shortened_urls".* FROM "shortened_urls"[0m
+  ↳ db/seeds.rb:19
+  [1m[36mShortenedUrl Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."shortened_url" = $1 LIMIT $2[0m  [["shortened_url", "DjHelB8YT6JUS8y61phmBA"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:33
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mShortenedUrl Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."shortened_url" = $1 LIMIT $2[0m  [["shortened_url", "DjHelB8YT6JUS8y61phmBA"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:84
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "shortened_urls" WHERE "shortened_urls"."user_id" = $1 AND (created_at > '2019-07-26 08:02:39.052461')[0m  [["user_id", 1]]
+  ↳ app/models/shortened_url.rb:84
+  [1m[36mShortenedUrl Create (0.9ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "shortened_url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "test_shortened_url_1"], ["shortened_url", "DjHelB8YT6JUS8y61phmBA"], ["user_id", 1], ["created_at", "2019-07-26 09:02:39.054203"], ["updated_at", "2019-07-26 09:02:39.054203"]]
+  ↳ app/models/shortened_url.rb:40
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mShortenedUrl Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."shortened_url" = $1 LIMIT $2[0m  [["shortened_url", "oYyVomDNuK4Jt8jyTVpLag"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:33
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mShortenedUrl Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."shortened_url" = $1 LIMIT $2[0m  [["shortened_url", "oYyVomDNuK4Jt8jyTVpLag"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:84
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "shortened_urls" WHERE "shortened_urls"."user_id" = $1 AND (created_at > '2019-07-26 08:02:39.061696')[0m  [["user_id", 2]]
+  ↳ app/models/shortened_url.rb:84
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "shortened_urls" WHERE "shortened_urls"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/models/shortened_url.rb:90
+  [1m[36mShortenedUrl Create (0.6ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "shortened_url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "test_shortened_url_2"], ["shortened_url", "oYyVomDNuK4Jt8jyTVpLag"], ["user_id", 2], ["created_at", "2019-07-26 09:02:39.066110"], ["updated_at", "2019-07-26 09:02:39.066110"]]
+  ↳ app/models/shortened_url.rb:40
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mShortenedUrl Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."shortened_url" = $1 LIMIT $2[0m  [["shortened_url", "wTqy4GoloUx-GaufKPaKpQ"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:33
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mShortenedUrl Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "shortened_urls" WHERE "shortened_urls"."shortened_url" = $1 LIMIT $2[0m  [["shortened_url", "wTqy4GoloUx-GaufKPaKpQ"], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/shortened_url.rb:84
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "shortened_urls" WHERE "shortened_urls"."user_id" = $1 AND (created_at > '2019-07-26 08:02:39.083740')[0m  [["user_id", 2]]
+  ↳ app/models/shortened_url.rb:84
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "shortened_urls" WHERE "shortened_urls"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/models/shortened_url.rb:90
+  [1m[36mShortenedUrl Create (0.5ms)[0m  [1m[32mINSERT INTO "shortened_urls" ("long_url", "shortened_url", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["long_url", "test_shortened_url_3"], ["shortened_url", "wTqy4GoloUx-GaufKPaKpQ"], ["user_id", 2], ["created_at", "2019-07-26 09:02:39.089084"], ["updated_at", "2019-07-26 09:02:39.089084"]]
+  ↳ app/models/shortened_url.rb:40
+  [1m[35m (25.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/shortened_url.rb:40
+  [1m[36mVisit Load (1.2ms)[0m  [1m[34mSELECT "visits".* FROM "visits"[0m
+  ↳ db/seeds.rb:25
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/visit.rb:16
+  [1m[36mVisit Create (1.9ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["shortened_url_id", 1], ["created_at", "2019-07-26 09:02:39.163496"], ["updated_at", "2019-07-26 09:02:39.163496"]]
+  ↳ app/models/visit.rb:16
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/visit.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/visit.rb:16
+  [1m[36mVisit Create (0.4ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["shortened_url_id", 2], ["created_at", "2019-07-26 09:02:39.173845"], ["updated_at", "2019-07-26 09:02:39.173845"]]
+  ↳ app/models/visit.rb:16
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/visit.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/visit.rb:16
+  [1m[36mVisit Create (0.7ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["shortened_url_id", 2], ["created_at", "2019-07-26 09:02:39.178809"], ["updated_at", "2019-07-26 09:02:39.178809"]]
+  ↳ app/models/visit.rb:16
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/visit.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/visit.rb:16
+  [1m[36mVisit Create (0.4ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["shortened_url_id", 3], ["created_at", "2019-07-26 09:02:39.184375"], ["updated_at", "2019-07-26 09:02:39.184375"]]
+  ↳ app/models/visit.rb:16
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/visit.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/visit.rb:16
+  [1m[36mVisit Create (0.5ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["shortened_url_id", 3], ["created_at", "2019-07-26 09:02:39.190128"], ["updated_at", "2019-07-26 09:02:39.190128"]]
+  ↳ app/models/visit.rb:16
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/visit.rb:16
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/visit.rb:16
+  [1m[36mVisit Create (0.4ms)[0m  [1m[32mINSERT INTO "visits" ("user_id", "shortened_url_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["shortened_url_id", 3], ["created_at", "2019-07-26 09:02:39.195028"], ["updated_at", "2019-07-26 09:02:39.195028"]]
+  ↳ app/models/visit.rb:16
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/visit.rb:16
+  [1m[36mTagTopic Load (0.8ms)[0m  [1m[34mSELECT "tag_topics".* FROM "tag_topics"[0m
+  ↳ db/seeds.rb:34
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:35
+  [1m[36mTagTopic Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "tag_topics" WHERE "tag_topics"."topic" = $1 LIMIT $2[0m  [["topic", "test_topic"], ["LIMIT", 1]]
+  ↳ db/seeds.rb:35
+  [1m[36mTagTopic Create (0.8ms)[0m  [1m[32mINSERT INTO "tag_topics" ("topic") VALUES ($1) RETURNING "id"[0m  [["topic", "test_topic"]]
+  ↳ db/seeds.rb:35
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:35
+  [1m[36mTagging Load (0.5ms)[0m  [1m[34mSELECT "taggings".* FROM "taggings"[0m
+  ↳ db/seeds.rb:38
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:39
+  [1m[36mTagging Create (1.0ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_topic_id", "shortened_url_id") VALUES ($1, $2) RETURNING "id"[0m  [["tag_topic_id", 1], ["shortened_url_id", 1]]
+  ↳ db/seeds.rb:39
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:39
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:40
+  [1m[36mTagging Create (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_topic_id", "shortened_url_id") VALUES ($1, $2) RETURNING "id"[0m  [["tag_topic_id", 1], ["shortened_url_id", 2]]
+  ↳ db/seeds.rb:40
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:40
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:41
+  [1m[36mTagging Create (0.4ms)[0m  [1m[32mINSERT INTO "taggings" ("tag_topic_id", "shortened_url_id") VALUES ($1, $2) RETURNING "id"[0m  [["tag_topic_id", 1], ["shortened_url_id", 3]]
+  ↳ db/seeds.rb:41
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:41
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/spencerlee/.rvm/gems/ruby-2.6.2/bin/annotate:23
